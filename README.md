@@ -44,7 +44,7 @@ External job discovery is read-only. MineBuild can import Minecraft-related list
 4. Choose **Sinkronkan Upwork** to run the documented `marketplaceJobPostingsSearch` query (up to five pages of 50 records). Only relevant Minecraft opportunities are normalized and imported. Duplicates are prevented using the source/external ID, canonical source URL, and content fingerprint.
 
 Set the same environment variables in the deployment environment. Use an HTTPS callback URI outside local development. If `BETTER_AUTH_SECRET` changes, reconnect Upwork because the stored tokens can no longer be decrypted.
-Only an existing trusted account explicitly assigned the `admin` role can connect a source or start a sync; public registration cannot create administrator accounts.
+Only an existing trusted account explicitly assigned the `admin` role can connect a source or start a sync; public registration cannot create administrator accounts. To designate the trusted local administrator after registering, update that account directly in PostgreSQL with `UPDATE "user" SET role = 'admin' WHERE email = 'trusted-admin@example.com';`. For a hosted deployment, use the provider's database console and the same statement with the trusted administrator's email.
 
 The Upwork GraphQL adapter remains in `lib/integrations/job-sources.ts`. Fiverr has its own adapter module in `lib/integrations/fiverr.ts`. Both implement the provider-independent contract in `lib/integrations/job-source-contract.ts` and normalize into the shared Job model. Fiverr intentionally returns an explicit not-configured error until its official API documentation and response format are supplied; no endpoint or response format is guessed, and neither platform is scraped.
 

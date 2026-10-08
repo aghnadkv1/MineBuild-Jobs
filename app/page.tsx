@@ -1185,7 +1185,11 @@ export default function Home() {
               })}
               {filteredJobs.length === 0 && (
                 <div className="rounded-md border border-slate-800 bg-slate-900 p-6 text-center text-sm text-slate-400">
-                  {isLoadingJobs ? "Memuat lowongan..." : "Belum ada lowongan yang cocok. Ubah kata kunci atau kategori."}
+                  {isLoadingJobs
+                    ? "Memuat lowongan..."
+                    : jobs.length === 0
+                      ? "Belum ada lowongan. Upwork perlu disambungkan dan disinkronkan oleh admin; Fiverr belum tersedia."
+                      : "Belum ada lowongan yang cocok. Ubah kata kunci atau kategori."}
                 </div>
               )}
             </div>

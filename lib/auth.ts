@@ -57,9 +57,6 @@ function createAuth() {
     },
     advanced: {
       useSecureCookies: process.env.NODE_ENV === "production",
-      database: {
-        generateId: "uuid",
-      },
     },
   });
 }
