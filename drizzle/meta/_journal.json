@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791458585360,
+      "tag": "0000_chunky_peter_quill",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791460012225,
+      "tag": "0001_rename-match-generated-at",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791487037328,
+      "tag": "0002_little_joseph",
+      "breakpoints": true
+    }
+  ]
+}

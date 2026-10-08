@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b1326;
+  --foreground: #e2e8f0;
+  --muted: #94a3b8;
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+html {
+  color-scheme: dark;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(94, 234, 212, 0.08), transparent 20%),
+    linear-gradient(180deg, #0a1227 0%, #0b1326 100%);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.23);
+  border-radius: 9999px;
+}
+
+.mini-shell {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.soft-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.7));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.jobs-layout,
+.ai-layout {
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+}
+
+.ai-layout {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+}
+
+.chat-layout {
+  grid-template-columns: 230px minmax(0, 1fr);
+}
+
+.glass-pill {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.hero-image {
+  background-size: cover;
+  background-position: center;
+  min-height: 220px;
+}
+
+.minecraft-scene,
+.portfolio-scene,
+.minecraft-thumb {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #172a3b;
+  background-image:
+    linear-gradient(180deg, rgba(8, 15, 32, 0.04) 0%, rgba(8, 15, 32, 0.14) 48%, rgba(8, 15, 32, 0.86) 100%),
+    linear-gradient(120deg, #35536a 0%, #617b83 28%, #283a49 56%, #16263a 100%);
+}
+
+.minecraft-scene::before,
+.portfolio-scene::before,
+.minecraft-thumb::before {
+  position: absolute;
+  z-index: -1;
+  inset: 35% -8% -35%;
+  content: "";
+  background:
+    linear-gradient(135deg, transparent 0 21%, #233b45 21.4% 31%, transparent 31.4%),
+    linear-gradient(45deg, transparent 0 22%, #39534f 22.4% 40%, transparent 40.4%),
+    linear-gradient(145deg, transparent 0 28%, #172b38 28.4% 44%, transparent 44.4%),
+    linear-gradient(35deg, transparent 0 39%, #2a4543 39.4% 55%, transparent 55.4%);
+  opacity: 0.9;
+}
+
+.minecraft-scene::after,
+.portfolio-scene::after,
+.minecraft-thumb::after {
+  position: absolute;
+  z-index: -1;
+  bottom: 12%;
+  left: 50%;
+  width: 20%;
+  height: 62%;
+  content: "";
+  transform: translateX(-50%);
+  background:
+    linear-gradient(90deg, transparent 0 9%, #293b45 9% 20%, transparent 20% 24%, #334853 24% 77%, transparent 77% 81%, #253942 81% 92%, transparent 92%),
+    linear-gradient(0deg, #1b2937 0 53%, transparent 53%),
+    linear-gradient(90deg, transparent 0 35%, #50616a 35% 65%, transparent 65%);
+  clip-path: polygon(
+    0 29%, 12% 29%, 12% 14%, 21% 14%, 21% 29%,
+    30% 29%, 30% 18%, 38% 18%, 38% 4%, 44% 4%,
+    44% 0, 56% 0, 56% 4%, 62% 4%, 62% 18%,
+    70% 18%, 70% 29%, 79% 29%, 79% 14%, 88% 14%,
+    88% 29%, 100% 29%, 100% 100%, 0 100%
+  );
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.42));
+}
+
+.castle-scene {
+  background-image:
+    radial-gradient(ellipse at 55% 26%, rgba(250, 210, 149, 0.5), transparent 28%),
+    linear-gradient(180deg, rgba(10, 17, 29, 0.03), rgba(8, 15, 32, 0.58)),
+    linear-gradient(120deg, #708791, #42596b 42%, #243448 74%, #142238);
+}
+
+.haven {
+  background-image:
+    radial-gradient(ellipse at 52% 38%, rgba(145, 220, 249, 0.72), transparent 22%),
+    linear-gradient(180deg, rgba(10, 17, 29, 0.05), rgba(8, 15, 32, 0.55)),
+    linear-gradient(120deg, #70b5ce, #74b8b4 42%, #405f6b 74%, #1b3040);
+}
+
+.haven::after {
+  width: 33%;
+  height: 44%;
+  bottom: 10%;
+  background:
+    linear-gradient(90deg, transparent 0 9%, #d1c59b 9% 26%, transparent 26% 33%, #a9d1c5 33% 69%, transparent 69% 77%, #d3c897 77% 91%, transparent 91%),
+    linear-gradient(0deg, #496c64 0 55%, transparent 55%);
+}
+
+.canyon {
+  background-image:
+    radial-gradient(ellipse at 72% 32%, rgba(254, 206, 130, 0.5), transparent 26%),
+    linear-gradient(180deg, rgba(10, 17, 29, 0.04), rgba(8, 15, 32, 0.58)),
+    linear-gradient(120deg, #bc8054, #8f5945 42%, #4f3d3b 75%, #1c2d39);
+}
+
+.canyon::before {
+  background:
+    linear-gradient(135deg, transparent 0 16%, #9b6349 16.4% 30%, transparent 30.4%),
+    linear-gradient(45deg, transparent 0 23%, #b17750 23.4% 42%, transparent 42.4%),
+    linear-gradient(145deg, transparent 0 28%, #493d3c 28.4% 45%, transparent 45.4%),
+    linear-gradient(35deg, transparent 0 39%, #744c42 39.4% 55%, transparent 55.4%);
+}
+
+.portfolio-scene.castle {
+  background-image:
+    radial-gradient(ellipse at 56% 25%, rgba(242, 209, 171, 0.42), transparent 24%),
+    linear-gradient(180deg, transparent, rgba(8, 15, 32, 0.48)),
+    linear-gradient(130deg, #738a8d, #586b70 40%, #354651 73%, #202c38);
+}
+
+.portfolio-scene.haven {
+  background-image:
+    radial-gradient(ellipse at 52% 34%, rgba(190, 237, 234, 0.52), transparent 27%),
+    linear-gradient(180deg, transparent, rgba(8, 15, 32, 0.5)),
+    linear-gradient(130deg, #77b6ca, #59989d 46%, #3d6471 75%, #20394c);
+}
+
+.portfolio-scene.canyon {
+  background-image:
+    radial-gradient(ellipse at 76% 28%, rgba(255, 211, 132, 0.56), transparent 25%),
+    linear-gradient(180deg, transparent, rgba(8, 15, 32, 0.55)),
+    linear-gradient(130deg, #c07e4e, #8b5540 45%, #56403c 75%, #233344);
+}
+
+.minecraft-thumb {
+  width: 42px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: 4px;
+}
+
+.minecraft-thumb::after {
+  width: 30%;
+  height: 60%;
+}
+
+@media (max-width: 640px) {
+  .hero-image {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 767px) {
+  .jobs-layout,
+  .ai-layout,
+  .chat-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

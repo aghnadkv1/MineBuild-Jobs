@@ -1,0 +1,1 @@
+ALTER TABLE "match_result" RENAME COLUMN "created_at" TO "generated_at";
