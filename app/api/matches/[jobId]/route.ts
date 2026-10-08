@@ -58,6 +58,13 @@ export async function POST(
 
     const [job] = await db.select().from(jobs).where(eq(jobs.id, jobId)).limit(1);
     if (!job) throw new ApiError(404, "JOB_NOT_FOUND", "Lowongan tidak ditemukan.");
+    if (job.source === "upwork") {
+      throw new ApiError(
+        403,
+        "UPWORK_MATCHING_DISABLED",
+        "Lowongan Upwork dapat ditinjau, tetapi tidak digunakan untuk mencocokkan profil builder.",
+      );
+    }
     if (job.status !== "open" && job.status !== "closed") {
       if (currentUser.role !== "admin" && currentUser.id !== job.clientId) {
         throw new ApiError(404, "JOB_NOT_FOUND", "Lowongan tidak ditemukan.");

@@ -1,4 +1,4 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, ne } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { apiErrorResponse, requireRole, pagination } from "@/lib/api";
 import { getDb } from "@/lib/db";
@@ -40,7 +40,13 @@ export async function GET(request: Request) {
       })
       .from(matchResults)
       .innerJoin(jobs, eq(matchResults.jobId, jobs.id))
-      .where(and(eq(matchResults.builderId, profile.id), eq(jobs.status, "open")))
+      .where(
+        and(
+          eq(matchResults.builderId, profile.id),
+          eq(jobs.status, "open"),
+          ne(jobs.source, "upwork"),
+        ),
+      )
       .orderBy(desc(matchResults.score))
       .limit(limit)
       .offset(offset);

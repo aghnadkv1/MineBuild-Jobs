@@ -43,6 +43,8 @@ External job discovery is read-only. MineBuild can import Minecraft-related list
 3. Sign in with an administrator account, choose **Hubungkan Upwork**, and approve access on Upwork. MineBuild uses OAuth 2.0 Authorization Code with PKCE; access and refresh tokens are encrypted in PostgreSQL using a key derived from `BETTER_AUTH_SECRET`.
 4. Choose **Sinkronkan Upwork** to run the documented `marketplaceJobPostingsSearch` query (up to five pages of 50 records). Only relevant Minecraft opportunities are normalized and imported. Duplicates are prevented using the source/external ID, canonical source URL, and content fingerprint.
 
+Upwork listings can be displayed and opened for manual review, but they are excluded from builder-profile matching and ranking. The match API rejects attempts to calculate profile scores for Upwork listings.
+
 Set the same environment variables in the deployment environment. Use an HTTPS callback URI outside local development. If `BETTER_AUTH_SECRET` changes, reconnect Upwork because the stored tokens can no longer be decrypted.
 Only an existing trusted account explicitly assigned the `admin` role can connect a source or start a sync; public registration cannot create administrator accounts. To designate the trusted local administrator after registering, update that account directly in PostgreSQL with `UPDATE "user" SET role = 'admin' WHERE email = 'trusted-admin@example.com';`. For a hosted deployment, use the provider's database console and the same statement with the trusted administrator's email.
 

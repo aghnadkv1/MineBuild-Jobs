@@ -1,4 +1,4 @@
-import { and, asc, desc, eq, gte, ilike, lte, or, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, ilike, lte, ne, or, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { apiErrorResponse, pagination, requireRole, requireUser, ApiError, readJson } from "@/lib/api";
 import { getDb } from "@/lib/db";
@@ -37,6 +37,9 @@ export async function GET(request: Request) {
         throw new ApiError(400, "INVALID_JOB_SOURCE", "Sumber lowongan tidak valid.");
       }
       conditions.push(eq(jobs.source, source));
+    }
+    if (sort === "match") {
+      conditions.push(ne(jobs.source, "upwork"));
     }
     if (query) {
       const escaped = query.replace(/[%_\\]/g, "\\$&");

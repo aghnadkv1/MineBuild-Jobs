@@ -688,7 +688,7 @@ export default function Home() {
     setIsSaving(true);
     try {
       await Promise.all(
-        jobs.slice(0, 10).map((job) =>
+        jobs.filter((job) => job.source !== "upwork").slice(0, 10).map((job) =>
           apiRequest(`/api/matches/${job.id}`, { method: "POST" }),
         ),
       );
@@ -1151,8 +1151,8 @@ export default function Home() {
                           {item.title}
                         </h2>
                       </div>
-                      <Badge className="shrink-0 rounded-full border-emerald-500/30 bg-emerald-400/10 text-[9px] text-emerald-300">
-                        {item.matchScore == null ? "MATCH —" : `${item.matchScore}% MATCH`}
+                      <Badge className={`shrink-0 rounded-full text-[9px] ${item.source === "upwork" ? "border-amber-500/30 bg-amber-400/10 text-amber-300" : "border-emerald-500/30 bg-emerald-400/10 text-emerald-300"}`}>
+                        {item.source === "upwork" ? "TIDAK DI-MATCH" : item.matchScore == null ? "MATCH —" : `${item.matchScore}% MATCH`}
                       </Badge>
                     </div>
                     <p className="mt-1.5 line-clamp-2 text-[10px] leading-4 text-slate-400">
@@ -1247,11 +1247,13 @@ export default function Home() {
                   <Sparkles className="h-3.5 w-3.5 text-violet-300" />
                   Match & Safety Insight
                   <span className="ml-auto rounded-full bg-emerald-400/10 px-2 py-0.5 font-mono text-[9px] text-emerald-300">
-                    {job.matchScore == null ? "Belum dihitung" : `${job.matchScore}% match`}
+                    {job.source === "upwork" ? "Tidak dicocokkan" : job.matchScore == null ? "Belum dihitung" : `${job.matchScore}% match`}
                   </span>
                 </div>
                 <p className="mt-2 text-[10px] leading-4 text-slate-400">
-                  {job.description}
+                  {job.source === "upwork"
+                    ? "Lowongan Upwork tetap dapat ditinjau, tetapi tidak digunakan untuk mencocokkan profil builder."
+                    : job.description}
                 </p>
                 <div className="mt-2 grid grid-cols-2 gap-2">
                   <div className="rounded bg-slate-950/70 p-2">
@@ -1388,7 +1390,7 @@ export default function Home() {
             <SectionEyebrow>Rekomendasi berdasarkan profil builder</SectionEyebrow>
             <h1 className="text-2xl font-bold tracking-tight text-white">Asisten Cari Kerja Aman</h1>
             <p className="mt-1 max-w-2xl text-[11px] text-slate-400">
-              Skor kecocokan dijelaskan dari keahlian, gaya, portfolio, budget, dan kompleksitas—bukan hasil model AI.
+              Skor kecocokan dijelaskan dari lowongan MineBuild, keahlian, gaya, portfolio, budget, dan kompleksitas—bukan hasil model AI. Lowongan Upwork dapat ditinjau, tetapi tidak dicocokkan dengan profil.
             </p>
           </div>
           <Button variant="secondary" size="sm" className="h-8 rounded-md text-[10px]" onClick={calculateMatches} disabled={isSaving}>
